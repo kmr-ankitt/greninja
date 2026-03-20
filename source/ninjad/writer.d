@@ -15,4 +15,14 @@ class Writer{
     this.output = File(filename, "w");
     this.width = width; 
   }
+
+  void line(string text, int indent = 0){
+    string leading_space = "  ";
+    foreach(_; 1 .. indent){
+      leading_space = "  " ~ leading_space;
+    }
+
+    this.output.writef("%s%s\n", leading_space, text);
+  }
+
 }
