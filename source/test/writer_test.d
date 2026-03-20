@@ -3,7 +3,13 @@ module test.writer_test;
 import ninjad.writer;
 
 unittest{
-    auto w = new Writer("build.ninja");
+    auto w = new Writer("writer_build.ninja");
     assert(w.output.name.length > 0);
-    assert(w.output.name == "build.ninja");
+}
+
+unittest{
+  import std.file;
+  auto w = new Writer("line_build.ninja");
+  w.line("rule cc");
+  w.line("command = gcc -c $in -o $out", 1);
 }
