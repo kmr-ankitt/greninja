@@ -15,3 +15,4 @@ ninjad-test-*
 *.o
 *.obj
 *.lst
+*_build.ninja
