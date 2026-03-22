@@ -1,6 +1,7 @@
 module test.writer_test;
 
 import greninja.writer;
+import std.file;
 
 unittest{
     auto w = new Writer("writer_build.ninja");
@@ -8,8 +9,17 @@ unittest{
 }
 
 unittest{
-  import std.file;
   auto w = new Writer("line_build.ninja");
   w.line("rule cc");
   w.line("command = gcc -c $in -o $out", 1);
+}
+
+unittest{
+  auto w = new Writer("variable_build.ninja");
+  w.variable("cflags", "-Wall -O2");
+}
+
+unittest{
+  auto w = new Writer("rule_build.ninja");
+  w.rule("cc", "gcc -c $in -o $out");
 }
