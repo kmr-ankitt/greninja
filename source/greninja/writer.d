@@ -1,6 +1,8 @@
 module greninja.writer;
 
 import std.stdio;
+import std.string : join;
+import std.format : format;
 
 class Writer
 {
@@ -42,8 +44,6 @@ class Writer
    **/
   void variable(string key, string value, int indent = 0)
   {
-    import std.format : format;
-
     if (value.length == 0)
       return;
     this.line(format("%s = %s", key, value), indent);
@@ -58,5 +58,33 @@ class Writer
   {
     this.line("rule " ~ name);
     this.line("command = " ~ command, 1);
+  }
+
+  // build special.o: cc special.c
+  //   [[cflags, -Wall], [deps, deplink]]
+
+  /**
+    @params:
+    1. string[]: output files
+    2. string: rule to use
+    3. string[]: input files
+    4. (optional) string[][]: variables to set for this build, default is empty
+  **/
+  void build(string[] output, string rule, string[] input, string[][] variables = [
+    ][])
+  {
+    string output_str = output.join(" ");
+    string input_str = input.join(" ");
+
+    this.line(format("build %s: %s %s", output_str, rule, input_str));
+
+    foreach (value; variables) {
+        if (value.length == 0) continue;
+
+        string key = value[0];
+        string val = value.length > 1 ? value[1 .. $].join(" ") : "";
+
+        this.variable(key, val, 1);
+    }
   }
 }
