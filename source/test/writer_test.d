@@ -23,3 +23,8 @@ unittest{
   auto w = new Writer("rule_build.ninja");
   w.rule("cc", "gcc -c $in -o $out");
 }
+
+unittest{
+  auto w = new Writer("build_build.ninja");
+  w.build(["main.o"], "cc", ["main.c"], [["cflags", "-Wall -O2"], ["deps", "deplink"]]);
+}
