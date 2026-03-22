@@ -51,7 +51,7 @@ class Writer
   {
     if (value.length == 0)
       return;
-    this.line(format("%s = %s", key, value), indent);
+    this.line(key ~ " = " ~ value, indent);
   }
 
   /** 
