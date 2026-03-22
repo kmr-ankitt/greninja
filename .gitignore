@@ -16,3 +16,4 @@ ninjad-test-*
 *.obj
 *.lst
 *_build.ninja
+/greninja-test-library
