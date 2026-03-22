@@ -28,3 +28,8 @@ unittest{
   auto w = new Writer("build_build.ninja");
   w.build(["main.o"], "cc", ["main.c"], [["cflags", "-Wall -O2"], ["deps", "deplink"]]);
 }
+
+unittest{
+  auto w = new Writer("default_build.ninja");
+  w._default(["main.o", "util.o"]);
+}

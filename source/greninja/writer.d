@@ -84,4 +84,12 @@ class Writer
         this.variable(key, val, 1);
     }
   }
+
+  /**
+  * @params:
+  * 1. string[]: paths to include in the default target
+  **/
+  void _default(string[] paths){
+    this.line("default " ~ paths.join(" "));
+  }
 }
