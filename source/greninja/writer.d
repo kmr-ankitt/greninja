@@ -20,6 +20,11 @@ class Writer
     this.width = width;
   }
 
+  ~this()
+  {
+    this.output.close();
+  }
+
   /** 
     * @params:
     * 1. string: text to write
@@ -75,13 +80,15 @@ class Writer
 
     this.line(format("build %s: %s %s", output_str, rule, input_str));
 
-    foreach (value; variables) {
-        if (value.length == 0) continue;
+    foreach (value; variables)
+    {
+      if (value.length == 0)
+        continue;
 
-        string key = value[0];
-        string val = value.length > 1 ? value[1 .. $].join(" ") : "";
+      string key = value[0];
+      string val = value.length > 1 ? value[1 .. $].join(" ") : "";
 
-        this.variable(key, val, 1);
+      this.variable(key, val, 1);
     }
   }
 
@@ -89,7 +96,8 @@ class Writer
   * @params:
   * 1. string[]: paths to include in the default target
   **/
-  void _default(string[] paths){
+  void _default(string[] paths)
+  {
     this.line("default " ~ paths.join(" "));
   }
 }
