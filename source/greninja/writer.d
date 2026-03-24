@@ -96,7 +96,7 @@ class Writer
     if (order_only_inputs.length > 0)
       line ~= " || " ~ order_only_inputs.join(" ");
 
-    this.line = line;
+    this.line(line);
 
     foreach (value; variables)
     {
