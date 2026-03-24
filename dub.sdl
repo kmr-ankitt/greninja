@@ -3,3 +3,5 @@ description "ninja file generator"
 authors "ankit"
 copyright "Copyright © 2026, ankit"
 license "Apache-2.0"
+
+targetType "library"
