@@ -33,9 +33,52 @@ unittest{
       ["header.h","header.h","header.h","header.h","header.h",],
       ["config.txt","header.h","header.h","header.h","header.h","header.h",]
   );
+
+  w.comment("compile");
+
+  w.rule("cc", "g++ -c $in -o $out");
+
+  w.build("main.o", "cc", "main.cpp");
+
+  w.build(
+      ["app"],
+      "link",
+      ["main.o", "util.o"],
+      null,
+      "config.txt"
+  );
+
+  w._default(["app"]);
 }
 
 unittest{
   auto w = new Writer("default_build.ninja");
   w._default(["main.o", "util.o"]);
+}
+
+unittest{
+  auto w = new Writer("testing_build.ninja");
+  w.build(
+      ["a.o"],
+      "cc",
+      ["a.cpp"],
+      ["header.h","header.h","header.h","header.h","header.h",],
+      ["config.txt","header.h","header.h","header.h","header.h","header.h",]
+  );
+
+  w.comment("compile");
+
+  w.rule("cc", "g++ -c $in -o $out");
+
+  w.build("main.o", "cc", "main.cpp");
+
+  w.build(
+      ["app"],
+      "link",
+      ["main.o", "util.o"],
+      null,
+      "config.txt"
+  );
+
+  w._default(["app"]);
 }
