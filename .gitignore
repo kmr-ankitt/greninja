@@ -24,3 +24,5 @@ example/*.o
 example/app
 example/build
 example/.ninja*
+/libgreninja.a
+/example/greninja-example
