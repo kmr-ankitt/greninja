@@ -17,3 +17,10 @@ ninjad-test-*
 *.lst
 *_build.ninja
 /greninja-test-library
+
+# example outputs
+example/build.ninja
+example/*.o
+example/app
+example/build
+example/.ninja*
