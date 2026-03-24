@@ -26,7 +26,13 @@ unittest{
 
 unittest{
   auto w = new Writer("build_build.ninja");
-  w.build(["main.o"], "cc", ["main.c"], [["cflags", "-Wall -O2"], ["deps", "deplink"]]);
+  w.build(
+      ["a.o"],
+      "cc",
+      ["a.cpp"],
+      ["header.h","header.h","header.h","header.h","header.h",],
+      ["config.txt","header.h","header.h","header.h","header.h","header.h",]
+  );
 }
 
 unittest{
